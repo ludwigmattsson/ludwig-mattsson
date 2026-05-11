@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { collectionPageSchema, siteKeywords } from "../../utils/seo";
 import { withBase } from "../../utils/url";
 
 const projects = (await getCollection("projects"))
@@ -9,9 +10,21 @@ const projects = (await getCollection("projects"))
   .sort((a, b) => a.data.order - b.data.order);
 
 const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
+const description = "Complete index of design, filmmaking, motion, identity, editorial, and visual storytelling projects by Ludwig Mattsson.";
 ---
 
-<BaseLayout title="Index">
+<BaseLayout
+  title="Index"
+  description={description}
+  canonicalPath="/index/"
+  keywords={siteKeywords()}
+  schema={collectionPageSchema({
+    path: "/index/",
+    title: "Ludwig Mattsson Project Index",
+    description,
+    projects
+  })}
+>
   <Header />
   <main class="index-page">
     <nav class="index-filter" aria-label="Project filters">

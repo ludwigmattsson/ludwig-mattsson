@@ -3,13 +3,31 @@ import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { collectionPageSchema, personSchema, siteKeywords, websiteSchema } from "../utils/seo";
 
 const projects = (await getCollection("projects"))
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+
+const description = "Selected design and filmmaking portfolio work by Ludwig Mattsson, a filmmaker and designer based in Stockholm.";
 ---
 
-<BaseLayout>
+<BaseLayout
+  description={description}
+  canonicalPath="/"
+  image={projects[0]?.data.cover}
+  keywords={siteKeywords()}
+  schema={[
+    personSchema(),
+    websiteSchema(),
+    collectionPageSchema({
+      path: "/",
+      title: "Ludwig Mattsson Portfolio",
+      description,
+      projects
+    })
+  ]}
+>
   <Header />
   <main class="project-list" aria-label="Selected projects">
     {projects.map((project) => <ProjectCard project={project} />)}

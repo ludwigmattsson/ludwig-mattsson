@@ -2,15 +2,26 @@
 import Footer from "../components/Footer.astro";
 import site from "../content/site.json";
 import "../styles/global.css";
-import { withBase } from "../utils/url";
+import { defaultSocialImage, serializeJsonLd } from "../utils/seo";
+import { absoluteUrl, withBase } from "../utils/url";
 
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  image?: string;
+  keywords?: string[];
+  type?: "website" | "article";
+  schema?: unknown | unknown[];
 }
 
 const pageTitle = Astro.props.title ? `${Astro.props.title} — ${site.title}` : site.title;
 const description = Astro.props.description || site.description;
+const canonical = absoluteUrl(Astro.props.canonicalPath || Astro.url.pathname);
+const socialImage = absoluteUrl(Astro.props.image || defaultSocialImage);
+const socialType = Astro.props.type || "website";
+const keywords = Astro.props.keywords?.filter(Boolean).join(", ");
+const schemas = [Astro.props.schema].flat().filter(Boolean);
 ---
 
 <!doctype html>
@@ -21,11 +32,25 @@ const description = Astro.props.description || site.description;
     <meta name="generator" content="Astro + Pages CMS" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta property="og:type" content="website" />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="author" content={site.title} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={canonical} />
+    <link rel="preload" href={withBase("/assets/framerusercontent.com/assets/DZkcGj6kaI4HZTcnAvhO2zUMk4.woff2")} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content={socialType} />
+    <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={pageTitle} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <link rel="icon" href={withBase("/assets/framerusercontent.com/images/KzJJXtCjD7Cl8tOvUuYnTvLJQo.png")} />
+    {schemas.map((schema) => <script type="application/ld+json" set:html={serializeJsonLd(schema)} />)}
   </head>
   <body>
     <slot />

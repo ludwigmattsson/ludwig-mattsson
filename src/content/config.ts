@@ -13,6 +13,9 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().default(""),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    seoKeywords: z.array(z.string()).default([]),
     category: z.enum(["design", "film", "design-film"]),
     date: z.string().optional(),
     order: z.number(),

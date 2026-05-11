@@ -4,6 +4,15 @@ import Header from "../components/Header.astro";
 import MediaGrid from "../components/MediaGrid.astro";
 import VideoEmbed from "../components/VideoEmbed.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  breadcrumbSchema,
+  personSchema,
+  projectKeywords,
+  projectMetaDescription,
+  projectMetaTitle,
+  projectSchema,
+  websiteSchema
+} from "../utils/seo";
 import { withBase } from "../utils/url";
 
 export async function getStaticPaths() {
@@ -29,9 +38,27 @@ const data = project.data;
 const formattedDate = data.date
   ? new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(data.date))
   : "";
+const seoTitle = projectMetaTitle(project);
+const seoDescription = projectMetaDescription(project);
 ---
 
-<BaseLayout title={data.title} description={data.description}>
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  canonicalPath={`/${project.slug}/`}
+  image={data.cover}
+  keywords={projectKeywords(project)}
+  type="article"
+  schema={[
+    personSchema(),
+    websiteSchema(),
+    breadcrumbSchema([
+      { name: "Portfolio", path: "/" },
+      { name: data.title, path: `/${project.slug}/` }
+    ]),
+    projectSchema(project)
+  ]}
+>
   <Header />
   <main class="project-detail">
     <section class="project-summary" aria-labelledby="project-title">

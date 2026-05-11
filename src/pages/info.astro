@@ -2,9 +2,18 @@
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import site from "../content/site.json";
+import { personSchema, profilePageSchema, siteKeywords, websiteSchema } from "../utils/seo";
+
+const description = "Ludwig Mattsson is a Stockholm-based filmmaker and designer working across film, design, visual storytelling, branding, motion graphics, and design systems.";
 ---
 
-<BaseLayout title="Information" description={site.description}>
+<BaseLayout
+  title="Information"
+  description={description}
+  canonicalPath="/info/"
+  keywords={siteKeywords()}
+  schema={[personSchema(), websiteSchema(), profilePageSchema()]}
+>
   <Header />
   <main class="info-page">
     <section class="info-copy" aria-label="Biography">

@@ -40,6 +40,19 @@ content:
       - name: description
         label: Description
         type: string
+      - name: seoTitle
+        label: Search title
+        type: string
+        description: Optional title used only for browser tabs, sharing, and search.
+      - name: seoDescription
+        label: Search description
+        type: text
+        description: Optional summary used only for search engines and social previews.
+      - name: seoKeywords
+        label: Search keywords
+        type: string
+        list: true
+        description: Optional hidden search topics such as film direction, design systems, motion graphics.
       - name: category
         label: Category
         type: select
@@ -140,6 +153,10 @@ content:
         type: string
       - name: description
         type: string
+      - name: keywords
+        label: Search keywords
+        type: string
+        list: true
       - name: intro
         type: text
       - name: bio

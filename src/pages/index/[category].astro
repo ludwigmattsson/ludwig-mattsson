@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { collectionPageSchema, siteKeywords } from "../../utils/seo";
 import { withBase } from "../../utils/url";
 
 export function getStaticPaths() {
@@ -21,9 +22,31 @@ const projects = allProjects.filter((project) => {
 });
 
 const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
+const labels = {
+  all: "All",
+  design: "Design",
+  film: "Film"
+};
+const categoryTitle = `${labels[category as keyof typeof labels] || "Project"} Index`;
+const description = category === "film"
+  ? "Film direction, short film, moving image, and visual storytelling projects by Ludwig Mattsson."
+  : category === "design"
+    ? "Design systems, identity, editorial, graphic design, and motion design projects by Ludwig Mattsson."
+    : "Complete index of design and filmmaking projects by Ludwig Mattsson.";
 ---
 
-<BaseLayout title={`Index ${category}`}>
+<BaseLayout
+  title={categoryTitle}
+  description={description}
+  canonicalPath={`/index/${category}/`}
+  keywords={siteKeywords()}
+  schema={collectionPageSchema({
+    path: `/index/${category}/`,
+    title: `${categoryTitle} — Ludwig Mattsson`,
+    description,
+    projects
+  })}
+>
   <Header />
   <main class="index-page">
     <nav class="index-filter" aria-label="Project filters">
