@@ -27,7 +27,9 @@ videoEmbeds:
     autoplay: false
     loop: false
     muted: false
-externalLinks: []
+externalLinks:
+  - label: "Download on App Store"
+    url: "https://apps.apple.com/us/app/experience-scania-xr/id6745253716?uo=2"
 ---
 
 My role involved both Direction of video and Design lead of the application.

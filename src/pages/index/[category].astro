@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { withBase } from "../../utils/url";
 
@@ -20,18 +19,26 @@ const projects = allProjects.filter((project) => {
   if (category === "film") return ["film", "design-film"].includes(project.data.category);
   return false;
 });
+
+const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
 ---
 
 <BaseLayout title={`Index ${category}`}>
   <Header />
   <main class="index-page">
-    <nav class="filter-nav" aria-label="Project filters">
-      <a class:list={{ active: category === "all" }} href={withBase("/index/all")}>All</a>
-      <a class:list={{ active: category === "design" }} href={withBase("/index/design")}>Design</a>
-      <a class:list={{ active: category === "film" }} href={withBase("/index/film")}>Film</a>
+    <nav class="index-filter" aria-label="Project filters">
+      <a class:list={{ active: category === "all" }} href={withBase("/index/all/")}>All</a>
+      <a class:list={{ active: category === "design" }} href={withBase("/index/design/")}>Design</a>
+      <a class:list={{ active: category === "film" }} href={withBase("/index/film/")}>Film</a>
     </nav>
-    <div class="project-list">
-      {projects.map((project) => <ProjectCard project={project} />)}
-    </div>
+    <section class="index-list" aria-label="Project index">
+      {projects.map((project) => (
+        <a class="index-row" href={withBase(`/${project.slug}`)}>
+          <span>{project.data.title}</span>
+          <span>{yearFor(project.data.date)}</span>
+          <span>{project.data.description}</span>
+        </a>
+      ))}
+    </section>
   </main>
 </BaseLayout>

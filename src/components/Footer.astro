@@ -1,0 +1,14 @@
+---
+import site from "../content/site.json";
+
+const instagram = site.social.find((link) => link.label.toLowerCase() === "instagram");
+const mail = site.social.find((link) => link.label.toLowerCase() === "mail") || {
+  label: "Mail",
+  url: `mailto:${site.email}`
+};
+---
+
+<footer class="site-footer">
+  {instagram && <a href={instagram.url}>{instagram.label}</a>}
+  <a href={mail.url}>{mail.label}</a>
+</footer>

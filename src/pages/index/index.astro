@@ -1,25 +1,32 @@
 ---
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { withBase } from "../../utils/url";
 
 const projects = (await getCollection("projects"))
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+
+const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
 ---
 
 <BaseLayout title="Index">
   <Header />
   <main class="index-page">
-    <nav class="filter-nav" aria-label="Project filters">
-      <a href={withBase("/index/all")}>All</a>
-      <a href={withBase("/index/design")}>Design</a>
-      <a href={withBase("/index/film")}>Film</a>
+    <nav class="index-filter" aria-label="Project filters">
+      <a href={withBase("/index/all/")}>All</a>
+      <a href={withBase("/index/design/")}>Design</a>
+      <a href={withBase("/index/film/")}>Film</a>
     </nav>
-    <div class="project-list">
-      {projects.map((project) => <ProjectCard project={project} />)}
-    </div>
+    <section class="index-list" aria-label="Project index">
+      {projects.map((project) => (
+        <a class="index-row" href={withBase(`/${project.slug}`)}>
+          <span>{project.data.title}</span>
+          <span>{yearFor(project.data.date)}</span>
+          <span>{project.data.description}</span>
+        </a>
+      ))}
+    </section>
   </main>
 </BaseLayout>

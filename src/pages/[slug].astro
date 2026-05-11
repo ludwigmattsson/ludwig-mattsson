@@ -21,18 +21,35 @@ export async function getStaticPaths() {
 
 interface Props {
   project: CollectionEntry<"projects">;
-  previous: CollectionEntry<"projects"> | null;
-  next: CollectionEntry<"projects"> | null;
 }
 
-const { project, previous, next } = Astro.props;
+const { project } = Astro.props;
 const { Content } = await project.render();
 const data = project.data;
+const formattedDate = data.date
+  ? new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(data.date))
+  : "";
 ---
 
 <BaseLayout title={data.title} description={data.description}>
   <Header />
   <main class="project-detail">
+    <section class="project-summary" aria-labelledby="project-title">
+      <h1 id="project-title">{data.title}</h1>
+      <p>{data.description}</p>
+      {formattedDate && <p>{formattedDate}</p>}
+
+      <div class="project-body">
+        <Content />
+      </div>
+
+      {data.externalLinks.length > 0 && (
+        <section class="project-links" aria-label="External links">
+          {data.externalLinks.map((link) => <a href={link.url}>{link.label}</a>)}
+        </section>
+      )}
+    </section>
+
     <figure class="project-hero">
       <img
         src={withBase(data.cover)}
@@ -43,34 +60,15 @@ const data = project.data;
       />
     </figure>
 
-    <section class="project-intro" aria-labelledby="project-title">
-      <h1 id="project-title">{data.title}</h1>
-      <p>{data.description}</p>
-    </section>
-
-    <section class="project-body">
-      <Content />
-    </section>
-
     {data.videoEmbeds.length > 0 && (
       <section class="project-videos" aria-label="Videos">
         {data.videoEmbeds.map((embed) => <VideoEmbed embed={embed} />)}
       </section>
     )}
 
+    <MediaGrid images={data.squareGallery} variant="square" />
     <MediaGrid images={data.gallery} />
     <MediaGrid images={data.standingGallery} variant="standing" />
-    <MediaGrid images={data.squareGallery} variant="square" />
 
-    {data.externalLinks.length > 0 && (
-      <section class="project-links" aria-label="External links">
-        {data.externalLinks.map((link) => <a href={link.url}>{link.label}</a>)}
-      </section>
-    )}
-
-    <nav class="project-pager" aria-label="Project navigation">
-      {previous ? <a href={withBase(`/${previous.slug}`)}>Previous</a> : <span></span>}
-      {next ? <a href={withBase(`/${next.slug}`)}>Next</a> : <span></span>}
-    </nav>
   </main>
 </BaseLayout>
