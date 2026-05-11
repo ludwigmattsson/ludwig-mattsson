@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { collectionPageSchema, siteKeywords } from "../../utils/seo";
 import { withBase } from "../../utils/url";
@@ -21,7 +22,6 @@ const projects = allProjects.filter((project) => {
   return false;
 });
 
-const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
 const labels = {
   all: "All",
   design: "Design",
@@ -54,13 +54,13 @@ const description = category === "film"
       <a class:list={{ active: category === "design" }} href={withBase("/index/design/")}>Design</a>
       <a class:list={{ active: category === "film" }} href={withBase("/index/film/")}>Film</a>
     </nav>
-    <section class="index-list" aria-label="Project index">
+    <section class="index-list index-list--grid project-index-grid" aria-label="Project index">
       {projects.map((project) => (
-        <a class="index-row" href={withBase(`/${project.slug}`)}>
-          <span>{project.data.title}</span>
-          <span>{yearFor(project.data.date)}</span>
-          <span>{project.data.description}</span>
-        </a>
+        <ProjectCard
+          project={project}
+          showYear
+          imageSizes="(max-width: 700px) calc(100vw - 20px), calc((100vw - 40px) / 3)"
+        />
       ))}
     </section>
   </main>

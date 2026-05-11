@@ -4,17 +4,20 @@ import { withBase } from "../utils/url";
 
 interface Props {
   project: CollectionEntry<"projects">;
+  showYear?: boolean;
+  imageSizes?: string;
 }
 
-const { project } = Astro.props;
+const { project, showYear = false, imageSizes = "calc(100vw - 20px)" } = Astro.props;
 const data = project.data;
+const year = data.date ? new Date(data.date).getUTCFullYear().toString() : "";
 ---
 
 <a class="project-card" href={withBase(`/${project.slug}`)}>
   <figure>
     <img
       src={withBase(data.cover)}
-      sizes="calc(100vw - 20px)"
+      sizes={imageSizes}
       alt=""
       loading="lazy"
       decoding="async"
@@ -22,6 +25,7 @@ const data = project.data;
   </figure>
   <div class="project-card__meta">
     <h2>{data.title}</h2>
+    {showYear && year && <span class="project-card__year">{year}</span>}
     <p>{data.description}</p>
   </div>
 </a>
