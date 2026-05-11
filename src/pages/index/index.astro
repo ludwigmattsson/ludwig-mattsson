@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import Header from "../../components/Header.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+
+const projects = (await getCollection("projects"))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Index">
+  <Header />
+  <main class="index-page">
+    <nav class="filter-nav" aria-label="Project filters">
+      <a href={withBase("/index/all")}>All</a>
+      <a href={withBase("/index/design")}>Design</a>
+      <a href={withBase("/index/film")}>Film</a>
+    </nav>
+    <div class="project-list">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </main>
+</BaseLayout>

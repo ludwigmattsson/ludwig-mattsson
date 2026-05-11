@@ -1,0 +1,18 @@
+---
+import { withBase } from "../utils/url";
+
+interface Props {
+  images?: string[];
+  variant?: "wide" | "standing" | "square";
+}
+
+const { images = [], variant = "wide" } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class:list={["media-grid", `media-grid--${variant}`]}>
+    {images.map((image) => (
+      <img src={withBase(image)} alt="" loading="lazy" decoding="async" />
+    ))}
+  </div>
+)}

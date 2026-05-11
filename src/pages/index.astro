@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects"))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <Header />
+  <main class="project-list" aria-label="Selected projects">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </main>
+</BaseLayout>

@@ -1,12 +1,34 @@
-# Ludwig Mattsson static site
+# Ludwig Mattsson portfolio
 
-This folder is a static mirror of https://ludwigmattsson.com for GitHub Pages.
+This repo is an Astro rebuild of the Framer portfolio, wired for Pages CMS and GitHub Pages.
 
-Deploy the contents of this directory as the site root. `index.html` is the entry point and local assets live under `assets/`.
+- Pages CMS config: `.pages.yml`
+- Project content: `src/content/projects/*.md`
+- Site settings: `src/content/site.json`
+- Downloaded Framer media: `assets/`
 
-This repo is prepared for the project Pages URL `https://ludwigmattsson.github.io/ludwig-mattsson/`. There is no `CNAME` file in this variant.
+The site is configured for the project Pages URL `https://ludwigmattsson.github.io/ludwig-mattsson/`. There is no `CNAME` file in this variant.
 
-The original Framer analytics/editor URLs are intentionally left external or inactive because they are not needed for the public static site.
+The Astro build creates real static project routes, so links like `/traton-design-system/` are generated as actual pages instead of depending on a Framer fallback.
+
+## Local work
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+The build copies the existing `assets/` folder into `dist/assets/` after Astro generates the pages.
+
+## Pages CMS
+
+Open `https://app.pagescms.org/`, sign in with GitHub, install/select this repository, then edit:
+
+- `Projects` for portfolio entries, galleries, categories, and video embeds.
+- `Site settings` for information page copy, clients, contact links, and recognition lists.
+
+Saving in Pages CMS commits changes back to GitHub. The GitHub Actions workflow rebuilds and deploys the site.
 
 ## Publish
 
@@ -17,4 +39,4 @@ cd "/Users/ludwigmattsson/Library/CloudStorage/OneDrive-ScaniaCV/Desktop/portfol
 git push origin main
 ```
 
-Then check the repository Actions tab. The existing `.github/workflows/static.yml` workflow deploys the repo root to GitHub Pages. If the action says Pages is not configured, go to repository Settings > Pages and set Source to GitHub Actions.
+Then check the repository Actions tab. `.github/workflows/static.yml` runs `npm ci`, builds Astro, uploads `dist`, and deploys it to GitHub Pages. If the action says Pages is not configured, go to repository Settings > Pages and set Source to GitHub Actions.

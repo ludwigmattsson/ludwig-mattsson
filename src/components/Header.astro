@@ -1,0 +1,12 @@
+---
+import site from "../content/site.json";
+import { withBase } from "../utils/url";
+---
+
+<header class="site-header">
+  <a href={withBase("/")} aria-label={`${site.title} home`}>{site.title}</a>
+  <nav aria-label="Primary navigation">
+    <a href={withBase("/index")}>Index</a>
+    <a href={withBase("/info")}>Information</a>
+  </nav>
+</header>

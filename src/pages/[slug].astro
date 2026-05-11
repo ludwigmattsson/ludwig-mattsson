@@ -1,0 +1,76 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Header from "../components/Header.astro";
+import MediaGrid from "../components/MediaGrid.astro";
+import VideoEmbed from "../components/VideoEmbed.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { srcsetWithBase, withBase } from "../utils/url";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+
+  return projects.map((project, index) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      previous: projects[index - 1] || null,
+      next: projects[index + 1] || null
+    }
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  previous: CollectionEntry<"projects"> | null;
+  next: CollectionEntry<"projects"> | null;
+}
+
+const { project, previous, next } = Astro.props;
+const { Content } = await project.render();
+const data = project.data;
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <Header />
+  <main class="project-detail">
+    <figure class="project-hero">
+      <img
+        src={withBase(data.cover)}
+        srcset={srcsetWithBase(data.coverSrcset)}
+        sizes="calc(100vw - 20px)"
+        alt=""
+        decoding="async"
+      />
+    </figure>
+
+    <section class="project-intro" aria-labelledby="project-title">
+      <h1 id="project-title">{data.title}</h1>
+      <p>{data.description}</p>
+    </section>
+
+    <section class="project-body">
+      <Content />
+    </section>
+
+    {data.videoEmbeds.length > 0 && (
+      <section class="project-videos" aria-label="Videos">
+        {data.videoEmbeds.map((embed) => <VideoEmbed embed={embed} />)}
+      </section>
+    )}
+
+    <MediaGrid images={data.gallery} />
+    <MediaGrid images={data.standingGallery} variant="standing" />
+    <MediaGrid images={data.squareGallery} variant="square" />
+
+    {data.externalLinks.length > 0 && (
+      <section class="project-links" aria-label="External links">
+        {data.externalLinks.map((link) => <a href={link.url}>{link.label}</a>)}
+      </section>
+    )}
+
+    <nav class="project-pager" aria-label="Project navigation">
+      {previous ? <a href={withBase(`/${previous.slug}`)}>Previous</a> : <span></span>}
+      {next ? <a href={withBase(`/${next.slug}`)}>Next</a> : <span></span>}
+    </nav>
+  </main>
+</BaseLayout>

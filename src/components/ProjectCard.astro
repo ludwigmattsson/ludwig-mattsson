@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { srcsetWithBase, withBase } from "../utils/url";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const data = project.data;
+---
+
+<a class="project-card" href={withBase(`/${project.slug}`)}>
+  <figure>
+    <img
+      src={withBase(data.cover)}
+      srcset={srcsetWithBase(data.coverSrcset)}
+      sizes="calc(100vw - 20px)"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+  <div class="project-card__meta">
+    <h2>{data.title}</h2>
+    <p>{data.description}</p>
+  </div>
+</a>

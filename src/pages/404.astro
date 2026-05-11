@@ -1,0 +1,13 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/url";
+---
+
+<BaseLayout title="Not found">
+  <Header />
+  <main class="not-found">
+    <p>Page not found.</p>
+    <a href={withBase("/")}>Back to index</a>
+  </main>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+import site from "../content/site.json";
+import "../styles/global.css";
+import { withBase } from "../utils/url";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const pageTitle = Astro.props.title ? `${Astro.props.title} — ${site.title}` : site.title;
+const description = Astro.props.description || site.description;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content="Astro + Pages CMS" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href={withBase("/assets/framerusercontent.com/images/KzJJXtCjD7Cl8tOvUuYnTvLJQo.png")} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

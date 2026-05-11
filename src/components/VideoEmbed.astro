@@ -1,0 +1,60 @@
+---
+interface Embed {
+  provider: "vimeo" | "youtube";
+  url: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+}
+
+interface Props {
+  embed: Embed;
+}
+
+const { embed } = Astro.props;
+
+function vimeoSrc(url: string) {
+  const parsed = new URL(url);
+  const [, id, hash] = parsed.pathname.match(/^\/(\d+)(?:\/([A-Za-z0-9]+))?/) || [];
+  if (!id) return url;
+
+  const params = new URLSearchParams();
+  if (hash) params.set("h", hash);
+  params.set("title", "0");
+  params.set("byline", "0");
+  params.set("portrait", "0");
+  if (embed.autoplay) params.set("autoplay", "1");
+  if (embed.loop) params.set("loop", "1");
+  if (embed.muted) params.set("muted", "1");
+
+  return `https://player.vimeo.com/video/${id}?${params.toString()}`;
+}
+
+function youtubeSrc(url: string) {
+  const parsed = new URL(url);
+  const id = parsed.hostname.includes("youtu.be")
+    ? parsed.pathname.slice(1)
+    : parsed.searchParams.get("v");
+  if (!id) return url;
+
+  const params = new URLSearchParams();
+  if (embed.autoplay) params.set("autoplay", "1");
+  if (embed.loop) params.set("loop", "1");
+  if (embed.muted) params.set("mute", "1");
+
+  const query = params.toString();
+  return `https://www.youtube.com/embed/${id}${query ? `?${query}` : ""}`;
+}
+
+const src = embed.provider === "vimeo" ? vimeoSrc(embed.url) : youtubeSrc(embed.url);
+---
+
+<div class="video-embed">
+  <iframe
+    src={src}
+    title={`${embed.provider} video`}
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>
