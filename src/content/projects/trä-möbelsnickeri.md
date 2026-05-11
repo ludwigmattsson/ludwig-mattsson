@@ -7,7 +7,6 @@ date: "2017-01-16"
 order: 35
 featured: true
 cover: "/assets/framerusercontent.com/images/6b73O5f0hzhWLt2sQrUv3x1zWbQ-6121c7dbae.jpeg"
-coverSrcset: "/assets/framerusercontent.com/images/6b73O5f0hzhWLt2sQrUv3x1zWbQ-6121c7dbae.jpeg 512w,/assets/framerusercontent.com/images/6b73O5f0hzhWLt2sQrUv3x1zWbQ-6121c7dbae.jpeg 1024w,/assets/framerusercontent.com/images/6b73O5f0hzhWLt2sQrUv3x1zWbQ-6121c7dbae.jpeg 2048w,/assets/framerusercontent.com/images/6b73O5f0hzhWLt2sQrUv3x1zWbQ-6121c7dbae.jpeg 3500w"
 gallery:
   - "/assets/framerusercontent.com/images/P9q8EiYIb40eayjIw3VKcZtWBQ-326504cd11.jpeg"
   - "/assets/framerusercontent.com/images/kU4wvp89LqQDA0PQNobaRa9rR0-761b1bb096.jpg"

@@ -7,7 +7,6 @@ date: "2018-02-02"
 order: 30
 featured: true
 cover: "/assets/framerusercontent.com/images/WhMlnGTtHLJpcZLRf0SlML7i9ms-b509f7f790.jpeg"
-coverSrcset: "/assets/framerusercontent.com/images/WhMlnGTtHLJpcZLRf0SlML7i9ms-b509f7f790.jpeg 512w,/assets/framerusercontent.com/images/WhMlnGTtHLJpcZLRf0SlML7i9ms-b509f7f790.jpeg 1024w,/assets/framerusercontent.com/images/WhMlnGTtHLJpcZLRf0SlML7i9ms-b509f7f790.jpeg 2048w,/assets/framerusercontent.com/images/WhMlnGTtHLJpcZLRf0SlML7i9ms-b509f7f790.jpeg 3000w"
 gallery: []
 standingGallery: []
 squareGallery: []

@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import MediaGrid from "../components/MediaGrid.astro";
 import VideoEmbed from "../components/VideoEmbed.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { srcsetWithBase, withBase } from "../utils/url";
+import { withBase } from "../utils/url";
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
@@ -53,7 +53,6 @@ const formattedDate = data.date
     <figure class="project-hero">
       <img
         src={withBase(data.cover)}
-        srcset={srcsetWithBase(data.coverSrcset)}
         sizes="calc(100vw - 20px)"
         alt=""
         decoding="async"

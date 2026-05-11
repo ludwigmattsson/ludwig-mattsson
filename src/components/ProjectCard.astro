@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { srcsetWithBase, withBase } from "../utils/url";
+import { withBase } from "../utils/url";
 
 interface Props {
   project: CollectionEntry<"projects">;
@@ -14,7 +14,6 @@ const data = project.data;
   <figure>
     <img
       src={withBase(data.cover)}
-      srcset={srcsetWithBase(data.coverSrcset)}
       sizes="calc(100vw - 20px)"
       alt=""
       loading="lazy"

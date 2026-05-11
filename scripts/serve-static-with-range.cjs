@@ -2,8 +2,9 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 
-const rootDir = path.resolve(__dirname, "..");
 const port = Number(process.argv[2] || 4175);
+const rootDir = path.resolve(__dirname, "..", process.argv[3] || ".");
+const basePath = (process.argv[4] || "").replace(/\/$/, "");
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -19,7 +20,6 @@ const mimeTypes = {
   ".webp": "image/webp",
   ".woff": "font/woff",
   ".woff2": "font/woff2",
-  ".framercms": "application/octet-stream",
 };
 
 function safePath(urlPath) {
@@ -29,7 +29,14 @@ function safePath(urlPath) {
 }
 
 function fileForRequest(req) {
-  let requested = safePath(new URL(req.url, "http://local").pathname);
+  let pathname = new URL(req.url, "http://local").pathname;
+  if (basePath && pathname.startsWith(`${basePath}/`)) {
+    pathname = pathname.slice(basePath.length) || "/";
+  } else if (basePath && pathname === basePath) {
+    pathname = "/";
+  }
+
+  let requested = safePath(pathname);
   if (!requested.startsWith(rootDir)) return null;
 
   if (fs.existsSync(requested) && fs.statSync(requested).isDirectory()) {
@@ -91,5 +98,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Serving ${rootDir} at http://127.0.0.1:${port}/`);
+  console.log(`Serving ${rootDir} at http://127.0.0.1:${port}${basePath || ""}/`);
 });

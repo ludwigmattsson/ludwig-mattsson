@@ -7,7 +7,6 @@ date: "2023-09-25"
 order: 5
 featured: true
 cover: "/assets/framerusercontent.com/images/pFw5JpWHzCgrhxH23mVICyQLcE-e0c70827f6.png"
-coverSrcset: "/assets/framerusercontent.com/images/pFw5JpWHzCgrhxH23mVICyQLcE-e0c70827f6.png 512w,/assets/framerusercontent.com/images/pFw5JpWHzCgrhxH23mVICyQLcE-e0c70827f6.png 1024w,/assets/framerusercontent.com/images/pFw5JpWHzCgrhxH23mVICyQLcE-e0c70827f6.png 2048w,/assets/framerusercontent.com/images/pFw5JpWHzCgrhxH23mVICyQLcE-e0c70827f6.png 3360w"
 gallery: []
 standingGallery: []
 squareGallery: []

@@ -68,10 +68,6 @@ content:
         required: true
         options:
           media: images
-      - name: coverSrcset
-        label: Cover srcset
-        type: text
-        hidden: true
       - name: gallery
         label: Wide gallery
         type: image

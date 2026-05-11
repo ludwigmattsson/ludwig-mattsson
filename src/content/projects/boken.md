@@ -7,7 +7,6 @@ date: "2018-09-29"
 order: 28
 featured: true
 cover: "/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg"
-coverSrcset: "/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg 512w,/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg 1024w,/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg 2048w,/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg 4096w,/assets/framerusercontent.com/images/8cep3N5FBBlNNWDmnwPjd4Kbl4k-092b928dd1.jpg 5833w"
 gallery:
   - "/assets/framerusercontent.com/images/zatNbQuLqDdu6oBOQ4zQcbeOYw-691115311a.jpg"
   - "/assets/framerusercontent.com/images/CHnFOvCI6CrBHdOhxif5bgxPvAQ-0106eccfff.jpg"

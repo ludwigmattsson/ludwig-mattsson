@@ -7,7 +7,6 @@ date: "2022-09-26"
 order: 10
 featured: true
 cover: "/assets/framerusercontent.com/images/YIbvjF9pDcNThrvDZ7ZtpYVcBw-94fcc19ad2.png"
-coverSrcset: "/assets/framerusercontent.com/images/YIbvjF9pDcNThrvDZ7ZtpYVcBw-94fcc19ad2.png 512w,/assets/framerusercontent.com/images/YIbvjF9pDcNThrvDZ7ZtpYVcBw-94fcc19ad2.png 1024w,/assets/framerusercontent.com/images/YIbvjF9pDcNThrvDZ7ZtpYVcBw-94fcc19ad2.png 2048w,/assets/framerusercontent.com/images/YIbvjF9pDcNThrvDZ7ZtpYVcBw-94fcc19ad2.png 3000w"
 gallery:
   - "/assets/framerusercontent.com/images/niSHYuLfd63Y9MPqy5xmNooQXIg-9c636cde35.png"
   - "/assets/framerusercontent.com/images/nqeHL1xAMTEPxeYhYO7ZvPPdmk-d4b343bbe8.png"

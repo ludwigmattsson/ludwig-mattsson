@@ -1,11 +1,4 @@
 @font-face {
-  font-family: "Fragment Mono";
-  src: url("/ludwig-mattsson/assets/fonts.gstatic.com/s/fragmentmono/v6/4iCr6K5wfMRRjxp0DA6-2CLnB4NHhg.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 400;
-}
-
-@font-face {
   font-family: "Eurostile Medium";
   src: url("/ludwig-mattsson/assets/framerusercontent.com/assets/DZkcGj6kaI4HZTcnAvhO2zUMk4.woff2") format("woff2");
   font-display: swap;

@@ -7,7 +7,6 @@ date: "2025-03-12"
 order: 2
 featured: true
 cover: "/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png"
-coverSrcset: "/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png 512w,/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png 1024w,/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png 2048w,/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png 2610w"
 gallery:
   - "/assets/framerusercontent.com/images/11OkjyirgTdZX4BPkRVR5SD7TE-9b3a64f9dd.png"
   - "/assets/framerusercontent.com/images/QlCN6hWle35D6OoV7McHoxyTY0-709d4f98a2.png"

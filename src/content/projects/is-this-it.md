@@ -7,7 +7,6 @@ date: "2024-01-01"
 order: 4
 featured: true
 cover: "/assets/framerusercontent.com/images/Snm8L4ewa9zIvsGCqMWAyvhexpk-13fda1c18b.png"
-coverSrcset: "/assets/framerusercontent.com/images/Snm8L4ewa9zIvsGCqMWAyvhexpk-13fda1c18b.png 512w,/assets/framerusercontent.com/images/Snm8L4ewa9zIvsGCqMWAyvhexpk-13fda1c18b.png 1024w,/assets/framerusercontent.com/images/Snm8L4ewa9zIvsGCqMWAyvhexpk-13fda1c18b.png 2048w,/assets/framerusercontent.com/images/Snm8L4ewa9zIvsGCqMWAyvhexpk-13fda1c18b.png 2055w"
 gallery:
   - "/assets/framerusercontent.com/images/4Fw0H1y8FhEcbmjNTQ9qI9eUSc-8f3da05769.jpg"
   - "/assets/framerusercontent.com/images/kMkKSHj5EBCsXqAoMOycsOpZsiQ-f89769ad61.jpg"

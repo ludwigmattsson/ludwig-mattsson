@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build && node scripts/copy-static-assets.mjs",
-    "preview": "astro preview --host 127.0.0.1"
+    "preview": "astro preview --host 127.0.0.1",
+    "preview:dist": "node scripts/serve-static-with-range.cjs 4175 dist /ludwig-mattsson",
+    "verify": "node scripts/verify-local-site.cjs http://127.0.0.1:4175/ludwig-mattsson/"
   },
   "dependencies": {
     "astro": "^5.13.8"

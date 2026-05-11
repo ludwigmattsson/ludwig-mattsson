@@ -1,15 +1,21 @@
 const { chromium } = require("/Users/ludwigmattsson/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright");
 
-const baseUrl = process.argv[2] || "http://127.0.0.1:4174/";
-const routesToClick = [
-  "traton-design-system",
-  "interdependence",
-  "boxen",
-  "keepy",
-  "tequila-club",
-  "info",
-  "index",
+const baseUrl = new URL(process.argv[2] || "http://127.0.0.1:4175/ludwig-mattsson/");
+const routesToVerify = [
+  ["home", ""],
+  ["traton-design-system", "traton-design-system/"],
+  ["scaniaexperience", "scaniaexperience/"],
+  ["interdependence", "interdependence/"],
+  ["boxen", "boxen/"],
+  ["keepy", "keepy/"],
+  ["tequila-club", "tequila-club/"],
+  ["info", "info/"],
+  ["index", "index/"],
 ];
+
+function routeUrl(route) {
+  return new URL(route, baseUrl).href;
+}
 
 async function collectMetrics(page, label) {
   await page.waitForTimeout(1200);
@@ -57,22 +63,14 @@ async function collectMetrics(page, label) {
   });
 
   const results = [];
-  await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 30000 });
-  results.push(await collectMetrics(page, "home"));
-  await page.screenshot({ path: "/private/tmp/ludwigmattsson-home.png", fullPage: false });
-
-  for (const slug of routesToClick) {
-    await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 30000 });
-    const selector = `a[href="./${slug}"]`;
-    const locator = page.locator(selector).first();
-    const count = await locator.count();
-    if (count === 0) {
-      results.push({ label: slug, missingLink: true });
-      continue;
-    }
-    await locator.click({ timeout: 10000 });
+  for (const [label, route] of routesToVerify) {
+    await page.goto(routeUrl(route), { waitUntil: "domcontentloaded", timeout: 30000 });
     await page.waitForLoadState("domcontentloaded", { timeout: 10000 }).catch(() => {});
-    results.push(await collectMetrics(page, slug));
+    results.push(await collectMetrics(page, label));
+
+    if (label === "home") {
+      await page.screenshot({ path: "/private/tmp/ludwigmattsson-home.png", fullPage: false });
+    }
   }
 
   await browser.close();

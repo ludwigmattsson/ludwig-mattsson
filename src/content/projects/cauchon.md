@@ -7,7 +7,6 @@ date: "2020-09-26"
 order: 14
 featured: true
 cover: "/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg"
-coverSrcset: "/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg 512w,/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg 1024w,/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg 2048w,/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg 4096w,/assets/framerusercontent.com/images/HXRgUhcxFfy4EMA4RSj4Uv3Tg-7b3a7a441a.jpeg 5833w"
 gallery:
   - "/assets/framerusercontent.com/images/ZeSf59w1YwIgM58isL6zO8VuLQ-980e21235d.jpeg"
 standingGallery: []

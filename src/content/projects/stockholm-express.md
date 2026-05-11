@@ -7,7 +7,6 @@ date: "2021-07-12"
 order: 12
 featured: true
 cover: "/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png"
-coverSrcset: "/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png 512w,/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png 1024w,/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png 2048w,/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png 4096w,/assets/framerusercontent.com/images/fXLtOctC8b8UHUHz2wZczs1ag-d69961545b.png 12000w"
 gallery:
   - "/assets/framerusercontent.com/images/dswW2UYYgzP7UsS38LV4KEnU-4330a0e18e.png"
   - "/assets/framerusercontent.com/images/5BER7DDyotE8KNQFG2jqydIgs-14700efe37.png"

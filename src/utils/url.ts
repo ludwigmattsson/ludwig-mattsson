@@ -9,15 +9,3 @@ export function withBase(path = "") {
   if (cleanPath === "") return cleanBase;
   return `${cleanBase}${cleanPath}`;
 }
-
-export function srcsetWithBase(srcset = "") {
-  return srcset
-    .split(",")
-    .map((part) => {
-      const [url, width] = part.trim().split(/\s+/, 2);
-      if (!url) return "";
-      return [withBase(url), width].filter(Boolean).join(" ");
-    })
-    .filter(Boolean)
-    .join(", ");
-}
