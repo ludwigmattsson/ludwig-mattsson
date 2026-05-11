@@ -1,6 +1,8 @@
 @font-face {
   font-family: "Eurostile Medium";
   src: url("/ludwig-mattsson/assets/framerusercontent.com/assets/DZkcGj6kaI4HZTcnAvhO2zUMk4.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -10,6 +12,7 @@
   --page-pad: 10px;
   --column-gap: 5px;
   --left-column: calc(50vw - 10px);
+  --text-measure: 390px;
 }
 
 * {
@@ -24,8 +27,13 @@ body {
   color: #000;
   font-family: "Eurostile Medium", "Eurostile Medium Placeholder", sans-serif;
   font-size: 13px;
+  font-weight: 400;
   line-height: 15.6px;
   letter-spacing: -0.26px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
 }
 
 body {
@@ -159,7 +167,7 @@ img {
 }
 
 .project-summary {
-  max-width: 590px;
+  max-width: min(100%, var(--text-measure));
   padding-bottom: 22px;
 }
 
@@ -169,6 +177,18 @@ img {
 
 .project-body p + p {
   margin-top: 16px;
+}
+
+.project-summary h1,
+.project-summary p,
+.project-summary a,
+.project-body p,
+.info-page p,
+.info-page h1,
+.info-page h2,
+.info-page li,
+.info-page a {
+  text-wrap: pretty;
 }
 
 .project-videos,
@@ -250,6 +270,10 @@ img {
   margin-top: 0;
 }
 
+.info-copy {
+  max-width: min(100%, var(--text-measure));
+}
+
 .info-page ul {
   padding: 0;
   list-style: none;
@@ -267,16 +291,11 @@ img {
 }
 
 @media (max-width: 700px) {
-  .site-header,
   .project-card__meta,
   .info-page,
   .site-footer,
   .index-row {
     grid-template-columns: 1fr;
-  }
-
-  .site-header {
-    gap: 0;
   }
 
   .site-header nav {
