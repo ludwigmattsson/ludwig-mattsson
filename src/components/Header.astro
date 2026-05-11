@@ -1,12 +1,16 @@
 ---
 import site from "../content/site.json";
 import { withBase } from "../utils/url";
+
+const pathname = Astro.url.pathname;
+const isIndex = /\/index(?:\/|$)/.test(pathname);
+const isInfo = /\/info(?:\/|$)/.test(pathname);
 ---
 
 <header class="site-header">
   <a href={withBase("/")} aria-label={`${site.title} home`}>{site.title}</a>
   <nav aria-label="Primary navigation">
-    <a href={withBase("/index/all/")}>Index</a>
-    <a href={withBase("/info/")}>Information</a>
+    <a class:list={{ active: isIndex }} href={withBase("/index/")}>Index</a>
+    <a class:list={{ active: isInfo }} href={withBase("/info/")}>Information</a>
   </nav>
 </header>

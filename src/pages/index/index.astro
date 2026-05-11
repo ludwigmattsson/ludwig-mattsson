@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { collectionPageSchema, siteKeywords } from "../../utils/seo";
 import { withBase } from "../../utils/url";
@@ -10,6 +9,7 @@ const projects = (await getCollection("projects"))
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
 
+const yearFor = (date?: string) => (date ? new Date(date).getUTCFullYear().toString() : "");
 const description = "Complete index of design, filmmaking, motion, identity, editorial, and visual storytelling projects by Ludwig Mattsson.";
 ---
 
@@ -28,17 +28,17 @@ const description = "Complete index of design, filmmaking, motion, identity, edi
   <Header />
   <main class="index-page">
     <nav class="index-filter" aria-label="Project filters">
-      <a class="active" href={withBase("/index/all/")}>All</a>
+      <a href={withBase("/index/all/")}>All</a>
       <a href={withBase("/index/design/")}>Design</a>
       <a href={withBase("/index/film/")}>Film</a>
     </nav>
-    <section class="index-list index-list--grid project-index-grid" aria-label="Project index">
+    <section class="index-list" aria-label="Project index">
       {projects.map((project) => (
-        <ProjectCard
-          project={project}
-          showYear
-          imageSizes="(max-width: 700px) calc(100vw - 20px), calc((100vw - 40px) / 3)"
-        />
+        <a class="index-row" href={withBase(`/${project.slug}`)}>
+          <span>{project.data.title}</span>
+          <span>{yearFor(project.data.date)}</span>
+          <span>{project.data.description}</span>
+        </a>
       ))}
     </section>
   </main>
