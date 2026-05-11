@@ -1,0 +1,12 @@
+{
+  "source": "https://ludwigmattsson.com/",
+  "mirroredAt": "2026-05-11T19:16:19.795Z",
+  "assetCount": 251,
+  "mirroredAssetCount": 250,
+  "failed": [
+    {
+      "url": "https://fonts.gstatic.com/s/",
+      "error": "404 Not Found"
+    }
+  ]
+}
